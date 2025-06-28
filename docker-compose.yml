@@ -1,0 +1,47 @@
+services:
+  # PostgreSQL Database Service
+  postgres:
+    image: postgres:13
+    container_name: kanboard-db
+    environment:
+      # These environment variables configure the PostgreSQL database instance.
+      POSTGRES_DB: kanboard
+      POSTGRES_USER: kanboard
+      POSTGRES_PASSWORD: kanboard123
+    ports:
+      # Maps the host machine's port 5432 to the container's port 5432 for direct DB access.
+      - "5432:5432"
+    volumes:
+      # Persists database data on the host machine to prevent data loss on container restart.
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      # Command to check if the database is ready to accept connections.
+      # The 'kanboard' service will wait for this check to pass before starting.
+      test: ["CMD-SHELL", "pg_isready -U kanboard -d kanboard"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Kanboard Application Service
+  kanboard:
+    image: kanboard/kanboard:latest
+    container_name: kanboard-app
+    ports:
+      # Maps the host machine's port 8080 to the container's port 80 (standard HTTP).
+      - "8080:80"
+    environment:
+      # Provides the database connection string to the Kanboard application.
+      # It uses the service name 'postgres' which Docker Compose resolves to the DB container's IP.
+      DATABASE_URL: postgres://kanboard:kanboard123@postgres:5432/kanboard
+    depends_on:
+      # Ensures that the 'postgres' service is healthy before this service starts.
+      postgres:
+        condition: service_healthy
+    volumes:
+      # Persists Kanboard application data (like plugins, uploads) on the host machine.
+      - kanboard_data:/var/www/app/data
+
+# Named volumes to manage persistent data for the services.
+volumes:
+  kanboard_data:
+  postgres_data:
