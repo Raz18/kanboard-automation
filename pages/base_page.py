@@ -1,9 +1,6 @@
 import os
-
 from playwright.sync_api import Page
-
 from utils.logger import setup_logger
-
 
 class BasePage:
     def __init__(self, page: Page):
@@ -19,24 +16,24 @@ class BasePage:
         return self.page.get_by_role(role, name=name, exact=exact)
 
     def navigate_back(self):
-        self.logger.info(f"Navigating to the previous page")
+        self.logger.info("Navigating to the previous page")
         self.page.go_back()
 
     def click_element(self, element, retries=3):
         """
-           Click an element using either a CSS selector or a Playwright Locator, with retry logic. """
+           Click an element using either a CSS selector or a Playwright Locator, with retry logic.
+        """
         for attempt in range(1, retries + 1):
             try:
                 if isinstance(element, str):
-                    # Click using a CSS selector
                     self.logger.info(
-                        f"Attempting to click element by selector: {element} (Attempt {attempt}/{retries})")
+                        f"Attempting to click element by selector: {element} (Attempt {attempt}/{retries})"
+                    )
                     self.page.click(element)
                 else:
-                    # Click using a Locator
                     self.logger.info(f"Attempting to click element by locator: {element} (Attempt {attempt}/{retries})")
                     element.click()
-                return  # Exit if click is successful
+                return
             except Exception as e:
                 self.logger.error(f"Click attempt {attempt} failed: {e}")
                 if attempt == retries:
@@ -94,7 +91,6 @@ class BasePage:
         default_screenshot_dir = "screenshots"
         if not os.path.exists(default_screenshot_dir):
             os.makedirs(default_screenshot_dir)
-
         path = os.path.join(default_screenshot_dir, filename)
         self.logger.info(f"Taking screenshot: {path}")
         self.page.screenshot(path=path)
