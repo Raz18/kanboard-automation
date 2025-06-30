@@ -167,7 +167,9 @@ allure serve allure-results
 This will open a web server with a dashboard where you can explore the test results.
 
 
-## 5. This repository includes a pre-generated sample Allure report (`-allure-report.zip`) to demonstrate the framework's output without needing to run the tests locally.
+## 5. Allure Report Example
+
+This repository includes a pre-generated sample Allure report (`-allure-report.zip`) to demonstrate the framework's output without needing to run the tests locally.
 
 To view the report:
 
