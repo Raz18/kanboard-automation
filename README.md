@@ -169,11 +169,11 @@ This will open a web server with a dashboard where you can explore the test resu
 
 ## 5. Allure Report Example
 
-This repository includes a pre-generated sample Allure report (`-allure-report.zip`) to demonstrate the framework's output without needing to run the tests locally.
+This repository includes a pre-generated sample Allure report (`allure-report.zip`) to demonstrate the framework's output without needing to run the tests locally.
 
 To view the report:
 
-1. **Find the File**: Locate the `allure-results.zip` file in the root of this repository.
+1. **Find the File**: Locate the `allure-report.zip` file in the root of this repository.
 2. **Unzip the Archive**: Extract the contents of the zip file. This will create a new folder named `allure-report`.
 3. **Open in Browser**: Navigate into the newly created `allure-report` folder and open the `index.html` file in your web browser.
 
