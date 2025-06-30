@@ -3,5 +3,5 @@ pytest-playwright>=0.4.0
 playwright>=1.40.0
 allure-pytest>=2.13.2
 psycopg2-binary>=2.9.7
-dotenv
+python-dotenv
 
