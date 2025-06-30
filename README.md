@@ -157,11 +157,22 @@ pytest tests/test_task_lifecycle.py
 The framework is integrated with Allure for detailed reporting.
 
 ```bash
-# 1. Run the tests and generate Allure results
+# 1.pytest.ini already includes generation of Allure results,
 pytest --alluredir=allure-results
 
-# 2. Serve the interactive HTML report
+# 2. Serve the interactive HTML report directory that is being created automatically
 allure serve allure-results
 ```
 
 This will open a web server with a dashboard where you can explore the test results.
+
+
+## 5. This repository includes a pre-generated sample Allure report (`-allure-report.zip`) to demonstrate the framework's output without needing to run the tests locally.
+
+To view the report:
+
+1. **Find the File**: Locate the `allure-results.zip` file in the root of this repository.
+2. **Unzip the Archive**: Extract the contents of the zip file. This will create a new folder named `allure-report`.
+3. **Open in Browser**: Navigate into the newly created `allure-report` folder and open the `index.html` file in your web browser.
+
+This allows you to immediately explore the features and level of detail provided by the Allure report.
