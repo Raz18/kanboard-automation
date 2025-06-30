@@ -8,12 +8,12 @@ The framework is built upon a clean, layered architecture that separates concern
 
 ### 1.1. Architecture Diagram
 The project follows a standardized and intuitive directory structure.
-```mermaid
+```
 kanboard-automation/
 ├── .env                  # Local environment variables (credentials, URLs). Not committed to Git.
 ├── .gitignore            # Specifies files and directories to be ignored by Git.
-├── config/               # Application configuration settings.
-│   └── app_settings.py
+├── config/               
+│   └── app_settings.py   # Application configuration settings.
 ├── docker-compose.yml    # Defines and configures the multi-container Docker environment.
 ├── pages/                # The Page Object Model layer. Each file represents a page in the UI.
 │   ├── base_page.py      # Base class for all page objects with common methods (click, navigate).
@@ -40,9 +40,7 @@ kanboard-automation/
 **Page Object Model** (`/pages`): This layer abstracts the UI components. Each page in the Kanboard application (e.g., LoginPage, DashboardPage) is represented by a class. These classes encapsulate the locators and the methods to interact with the elements on that page. This design makes tests resilient to UI changes; if a locator changes, the update is only required in one place.
 
 **Utilities** (`/utils`): This layer contains reusable helper modules that are not specific to any single page, such as:
-- `db_validator.py`: Handles all direct SQL interactions for data validation.
 - `logger.py`: Provides a centralized logging setup.
-- `test_data.py`: Generates unique data for tests to ensure they are independent.
 
 **Configuration** (`/config` & `.env`): Manages all external configuration parameters, such as URLs, credentials, and test execution settings (e.g., headless mode). This separation allows for easy modification of settings without changing the test code.
 
@@ -67,7 +65,7 @@ The framework is engineered to handle the complexities of modern web application
 
 - **Retry Mechanisms**: The custom `click_element` method includes a built-in retry loop, making it resilient to occasional UI lag where an element might not be immediately clickable.
 
-- **Complex Gestures**: The framework demonstrates advanced interactions like `drag_to` in TaskPage to test the drag-and-drop functionality of the Kanboard, a critical user feature.
+- **Complex Gestures**: The framework demonstrates advanced interactions like `find project` that go over all project pages to find the desired project page name.
 
 - **Smart Locators**: Locators are defined at the top of each page object for easy maintenance. Dynamic locators (e.g., `task_selector_by_title`) are implemented as functions to find elements based on runtime data.
 
