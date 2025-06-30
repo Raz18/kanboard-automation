@@ -1,5 +1,7 @@
 import os
-from playwright.async_api import Page
+
+from playwright.sync_api import Page
+
 from utils.logger import setup_logger
 
 
