@@ -75,7 +75,7 @@ def authenticated_state_fixture(playwright: Playwright):
     if not os.path.exists(AUTH_FILE):
         print("\nPerforming one-time UI login for the session...")
         # Use a new browser for a clean login process
-        browser = playwright.chromium.launch(headless=False, slow_mo=10)
+        browser = playwright.chromium.launch()
         page = browser.new_page()
 
         # Perform the login
